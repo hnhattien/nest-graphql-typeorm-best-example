@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  dev-db: 
+    image: 'postgres:12.14-alpine'
+    environment: 
+     POSTGRES_USER: 'root'
+     POSTGRES_PASSWORD: 'root'
+     POSTGRES_DATABASE: 'nestjs'
+     POSTGRES_HOST_AUTH_METHOD: 'trust'
+    ports:
+      - "5000:5432"
+    expose:
+      - 5000
+    networks:
+      - nestjs
+    volumes:
+      - data:/var/lib/posgresql/data
+  pgadmin:
+    image: 'dpage/pgadmin4:latest'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'hello1234@gmail.com'
+      PGADMIN_DEFAULT_PASSWORD: 'hello1234'
+networks:
+  nestjs:
+volumes:
+  data:
